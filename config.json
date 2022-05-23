@@ -1,5 +1,5 @@
 {
-    "file": "https://raw.githubusercontent.com/nanthony007/combinations/main/direct_drugs.csv",
+    "file": "https://raw.githubusercontent.com/nanthony007/combinations/main/both_drugs.csv",
     "name": "Drug Combos",
     "header": 0,
     "separator": ",",
