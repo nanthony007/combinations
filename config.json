@@ -1,0 +1,28 @@
+{
+    "file": "https://raw.githubusercontent.com/nanthony007/combinations/main/direct_drugs.csv",
+    "name": "Drug Combos",
+    "header": 0,
+    "separator": ",",
+    "skip": 0,
+    "meta": [
+        {
+            "type": "id",
+            "index": 0,
+            "name": "index"
+        },
+        {
+            "type": "integer",
+            "index": 1,
+            "name": "cohort_new"
+        }
+    ],
+    "sets": [
+        {
+            "format": "binary",
+            "start": 2,
+            "end": 16
+        }
+    ],
+    "author": "nick",
+    "description": "Drug combos"
+}
