@@ -1,0 +1,120 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 750px;
+            height: 750px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+        #config {
+            float: left;
+            width: 400px;
+            height: 600px;
+        }
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<div id = "config"></div>
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "amphetamine", "label": "amphetamine", "shape": "dot", "size": 10}, {"id": "meth", "label": "meth", "shape": "dot", "size": 10}, {"id": "cannabinoids", "label": "cannabinoids", "shape": "dot", "size": 10}, {"id": "morphine", "label": "morphine", "shape": "dot", "size": 10}, {"id": "fentanyl", "label": "fentanyl", "shape": "dot", "size": 10}, {"id": "oxycodone", "label": "oxycodone", "shape": "dot", "size": 10}, {"id": "caffeine", "label": "caffeine", "shape": "dot", "size": 10}, {"id": "buprenorphine", "label": "buprenorphine", "shape": "dot", "size": 10}, {"id": "hydrocodone", "label": "hydrocodone", "shape": "dot", "size": 10}, {"id": "cocaine", "label": "cocaine", "shape": "dot", "size": 10}, {"id": "alprazolam", "label": "alprazolam", "shape": "dot", "size": 10}, {"id": "gabapentin", "label": "gabapentin", "shape": "dot", "size": 10}, {"id": "ketamine", "label": "ketamine", "shape": "dot", "size": 10}, {"id": "tramadol", "label": "tramadol", "shape": "dot", "size": 10}, {"id": "methadone", "label": "methadone", "shape": "dot", "size": 10}, {"id": "codeine", "label": "codeine", "shape": "dot", "size": 10}, {"id": "heroin", "label": "heroin", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"color": "green", "from": "amphetamine", "label": 728, "title": "Both", "to": "meth", "weight": 728}, {"color": "green", "from": "amphetamine", "label": 301, "title": "Both", "to": "cannabinoids", "weight": 301}, {"color": "green", "from": "amphetamine", "label": 336, "title": "Both", "to": "morphine", "weight": 336}, {"color": "green", "from": "amphetamine", "label": 247, "title": "Both", "to": "fentanyl", "weight": 247}, {"color": "green", "from": "amphetamine", "label": 218, "title": "Both", "to": "oxycodone", "weight": 218}, {"color": "green", "from": "amphetamine", "label": 153, "title": "Both", "to": "caffeine", "weight": 153}, {"color": "green", "from": "amphetamine", "label": 324, "title": "Both", "to": "buprenorphine", "weight": 324}, {"color": "green", "from": "amphetamine", "label": 82, "title": "Both", "to": "hydrocodone", "weight": 82}, {"color": "green", "from": "amphetamine", "label": 73, "title": "Both", "to": "cocaine", "weight": 73}, {"color": "green", "from": "amphetamine", "label": 57, "title": "Both", "to": "alprazolam", "weight": 57}, {"color": "green", "from": "amphetamine", "label": 87, "title": "Both", "to": "gabapentin", "weight": 87}, {"color": "green", "from": "amphetamine", "label": 44, "title": "Both", "to": "ketamine", "weight": 44}, {"color": "green", "from": "amphetamine", "label": 43, "title": "Both", "to": "tramadol", "weight": 43}, {"color": "green", "from": "amphetamine", "label": 56, "title": "Both", "to": "methadone", "weight": 56}, {"color": "green", "from": "amphetamine", "label": 46, "title": "Both", "to": "codeine", "weight": 46}, {"color": "green", "from": "amphetamine", "label": 54, "title": "Both", "to": "heroin", "weight": 54}, {"color": "green", "from": "meth", "label": 364, "title": "Both", "to": "cannabinoids", "weight": 364}, {"color": "green", "from": "meth", "label": 444, "title": "Both", "to": "morphine", "weight": 444}, {"color": "green", "from": "meth", "label": 331, "title": "Both", "to": "fentanyl", "weight": 331}, {"color": "green", "from": "meth", "label": 272, "title": "Both", "to": "oxycodone", "weight": 272}, {"color": "green", "from": "meth", "label": 420, "title": "Both", "to": "buprenorphine", "weight": 420}, {"color": "green", "from": "meth", "label": 178, "title": "Both", "to": "caffeine", "weight": 178}, {"color": "green", "from": "meth", "label": 98, "title": "Both", "to": "cocaine", "weight": 98}, {"color": "green", "from": "meth", "label": 97, "title": "Both", "to": "hydrocodone", "weight": 97}, {"color": "green", "from": "meth", "label": 77, "title": "Both", "to": "alprazolam", "weight": 77}, {"color": "green", "from": "meth", "label": 107, "title": "Both", "to": "gabapentin", "weight": 107}, {"color": "green", "from": "meth", "label": 54, "title": "Both", "to": "ketamine", "weight": 54}, {"color": "green", "from": "meth", "label": 58, "title": "Both", "to": "tramadol", "weight": 58}, {"color": "green", "from": "meth", "label": 59, "title": "Both", "to": "codeine", "weight": 59}, {"color": "green", "from": "meth", "label": 66, "title": "Both", "to": "methadone", "weight": 66}, {"color": "green", "from": "meth", "label": 71, "title": "Both", "to": "heroin", "weight": 71}, {"color": "green", "from": "cannabinoids", "label": 102, "title": "Both", "to": "cocaine", "weight": 102}, {"color": "green", "from": "cannabinoids", "label": 242, "title": "Both", "to": "morphine", "weight": 242}, {"color": "green", "from": "cannabinoids", "label": 178, "title": "Both", "to": "fentanyl", "weight": 178}, {"color": "green", "from": "cannabinoids", "label": 156, "title": "Both", "to": "oxycodone", "weight": 156}, {"color": "green", "from": "cannabinoids", "label": 263, "title": "Both", "to": "buprenorphine", "weight": 263}, {"color": "green", "from": "cannabinoids", "label": 63, "title": "Both", "to": "alprazolam", "weight": 63}, {"color": "green", "from": "cannabinoids", "label": 75, "title": "Both", "to": "hydrocodone", "weight": 75}, {"color": "green", "from": "cannabinoids", "label": 88, "title": "Both", "to": "caffeine", "weight": 88}, {"color": "green", "from": "cannabinoids", "label": 52, "title": "Both", "to": "gabapentin", "weight": 52}, {"color": "green", "from": "cannabinoids", "label": 26, "title": "Both", "to": "ketamine", "weight": 26}, {"color": "green", "from": "cannabinoids", "label": 32, "title": "Both", "to": "tramadol", "weight": 32}, {"color": "green", "from": "cannabinoids", "label": 29, "title": "Both", "to": "codeine", "weight": 29}, {"color": "green", "from": "cannabinoids", "label": 28, "title": "Both", "to": "methadone", "weight": 28}, {"color": "green", "from": "cannabinoids", "label": 44, "title": "Both", "to": "heroin", "weight": 44}, {"color": "green", "from": "morphine", "label": 254, "title": "Both", "to": "oxycodone", "weight": 254}, {"color": "green", "from": "morphine", "label": 313, "title": "Both", "to": "fentanyl", "weight": 313}, {"color": "green", "from": "morphine", "label": 111, "title": "Both", "to": "cocaine", "weight": 111}, {"color": "green", "from": "morphine", "label": 75, "title": "Both", "to": "hydrocodone", "weight": 75}, {"color": "green", "from": "morphine", "label": 234, "title": "Both", "to": "buprenorphine", "weight": 234}, {"color": "green", "from": "morphine", "label": 139, "title": "Both", "to": "caffeine", "weight": 139}, {"color": "green", "from": "morphine", "label": 52, "title": "Both", "to": "alprazolam", "weight": 52}, {"color": "green", "from": "morphine", "label": 75, "title": "Both", "to": "codeine", "weight": 75}, {"color": "green", "from": "morphine", "label": 81, "title": "Both", "to": "gabapentin", "weight": 81}, {"color": "green", "from": "morphine", "label": 32, "title": "Both", "to": "ketamine", "weight": 32}, {"color": "green", "from": "morphine", "label": 65, "title": "Both", "to": "tramadol", "weight": 65}, {"color": "green", "from": "morphine", "label": 84, "title": "Both", "to": "heroin", "weight": 84}, {"color": "green", "from": "morphine", "label": 53, "title": "Both", "to": "methadone", "weight": 53}, {"color": "green", "from": "cocaine", "label": 38, "title": "Both", "to": "caffeine", "weight": 38}, {"color": "green", "from": "cocaine", "label": 109, "title": "Both", "to": "fentanyl", "weight": 109}, {"color": "green", "from": "cocaine", "label": 50, "title": "Both", "to": "oxycodone", "weight": 50}, {"color": "green", "from": "cocaine", "label": 30, "title": "Both", "to": "alprazolam", "weight": 30}, {"color": "green", "from": "cocaine", "label": 56, "title": "Both", "to": "buprenorphine", "weight": 56}, {"color": "green", "from": "cocaine", "label": 28, "title": "Both", "to": "hydrocodone", "weight": 28}, {"color": "green", "from": "cocaine", "label": 24, "title": "Both", "to": "gabapentin", "weight": 24}, {"color": "green", "from": "cocaine", "label": 11, "title": "Both", "to": "ketamine", "weight": 11}, {"color": "green", "from": "cocaine", "label": 17, "title": "Both", "to": "tramadol", "weight": 17}, {"color": "green", "from": "cocaine", "label": 29, "title": "Both", "to": "heroin", "weight": 29}, {"color": "green", "from": "cocaine", "label": 24, "title": "Both", "to": "codeine", "weight": 24}, {"color": "green", "from": "cocaine", "label": 13, "title": "Both", "to": "methadone", "weight": 13}, {"color": "green", "from": "fentanyl", "label": 147, "title": "Both", "to": "oxycodone", "weight": 147}, {"color": "green", "from": "fentanyl", "label": 141, "title": "Both", "to": "buprenorphine", "weight": 141}, {"color": "green", "from": "fentanyl", "label": 45, "title": "Both", "to": "alprazolam", "weight": 45}, {"color": "green", "from": "fentanyl", "label": 43, "title": "Both", "to": "ketamine", "weight": 43}, {"color": "green", "from": "fentanyl", "label": 44, "title": "Both", "to": "hydrocodone", "weight": 44}, {"color": "green", "from": "fentanyl", "label": 48, "title": "Both", "to": "gabapentin", "weight": 48}, {"color": "green", "from": "fentanyl", "label": 66, "title": "Both", "to": "caffeine", "weight": 66}, {"color": "green", "from": "fentanyl", "label": 68, "title": "Both", "to": "heroin", "weight": 68}, {"color": "green", "from": "fentanyl", "label": 49, "title": "Both", "to": "codeine", "weight": 49}, {"color": "green", "from": "fentanyl", "label": 51, "title": "Both", "to": "methadone", "weight": 51}, {"color": "green", "from": "fentanyl", "label": 53, "title": "Both", "to": "tramadol", "weight": 53}, {"color": "green", "from": "oxycodone", "label": 65, "title": "Both", "to": "hydrocodone", "weight": 65}, {"color": "green", "from": "oxycodone", "label": 218, "title": "Both", "to": "buprenorphine", "weight": 218}, {"color": "green", "from": "oxycodone", "label": 44, "title": "Both", "to": "alprazolam", "weight": 44}, {"color": "green", "from": "oxycodone", "label": 95, "title": "Both", "to": "caffeine", "weight": 95}, {"color": "green", "from": "oxycodone", "label": 72, "title": "Both", "to": "gabapentin", "weight": 72}, {"color": "green", "from": "oxycodone", "label": 22, "title": "Both", "to": "ketamine", "weight": 22}, {"color": "green", "from": "oxycodone", "label": 42, "title": "Both", "to": "tramadol", "weight": 42}, {"color": "green", "from": "oxycodone", "label": 54, "title": "Both", "to": "methadone", "weight": 54}, {"color": "green", "from": "oxycodone", "label": 25, "title": "Both", "to": "codeine", "weight": 25}, {"color": "green", "from": "oxycodone", "label": 21, "title": "Both", "to": "heroin", "weight": 21}, {"color": "green", "from": "buprenorphine", "label": 68, "title": "Both", "to": "alprazolam", "weight": 68}, {"color": "green", "from": "buprenorphine", "label": 135, "title": "Both", "to": "caffeine", "weight": 135}, {"color": "green", "from": "buprenorphine", "label": 96, "title": "Both", "to": "gabapentin", "weight": 96}, {"color": "green", "from": "buprenorphine", "label": 69, "title": "Both", "to": "hydrocodone", "weight": 69}, {"color": "green", "from": "buprenorphine", "label": 25, "title": "Both", "to": "ketamine", "weight": 25}, {"color": "green", "from": "buprenorphine", "label": 35, "title": "Both", "to": "tramadol", "weight": 35}, {"color": "green", "from": "buprenorphine", "label": 22, "title": "Both", "to": "codeine", "weight": 22}, {"color": "green", "from": "buprenorphine", "label": 28, "title": "Both", "to": "methadone", "weight": 28}, {"color": "green", "from": "buprenorphine", "label": 22, "title": "Both", "to": "heroin", "weight": 22}, {"color": "green", "from": "caffeine", "label": 35, "title": "Both", "to": "hydrocodone", "weight": 35}, {"color": "green", "from": "caffeine", "label": 22, "title": "Both", "to": "alprazolam", "weight": 22}, {"color": "green", "from": "caffeine", "label": 23, "title": "Both", "to": "tramadol", "weight": 23}, {"color": "green", "from": "caffeine", "label": 41, "title": "Both", "to": "gabapentin", "weight": 41}, {"color": "green", "from": "caffeine", "label": 17, "title": "Both", "to": "codeine", "weight": 17}, {"color": "green", "from": "caffeine", "label": 12, "title": "Both", "to": "ketamine", "weight": 12}, {"color": "green", "from": "caffeine", "label": 18, "title": "Both", "to": "heroin", "weight": 18}, {"color": "green", "from": "caffeine", "label": 24, "title": "Both", "to": "methadone", "weight": 24}, {"color": "green", "from": "hydrocodone", "label": 24, "title": "Both", "to": "alprazolam", "weight": 24}, {"color": "green", "from": "hydrocodone", "label": 29, "title": "Both", "to": "gabapentin", "weight": 29}, {"color": "green", "from": "hydrocodone", "label": 6, "title": "Both", "to": "ketamine", "weight": 6}, {"color": "green", "from": "hydrocodone", "label": 13, "title": "Both", "to": "codeine", "weight": 13}, {"color": "green", "from": "hydrocodone", "label": 14, "title": "Both", "to": "tramadol", "weight": 14}, {"color": "green", "from": "hydrocodone", "label": 16, "title": "Both", "to": "methadone", "weight": 16}, {"color": "green", "from": "hydrocodone", "label": 8, "title": "Both", "to": "heroin", "weight": 8}, {"color": "green", "from": "alprazolam", "label": 19, "title": "Both", "to": "gabapentin", "weight": 19}, {"color": "green", "from": "alprazolam", "label": 7, "title": "Both", "to": "tramadol", "weight": 7}, {"color": "green", "from": "alprazolam", "label": 11, "title": "Both", "to": "codeine", "weight": 11}, {"color": "green", "from": "alprazolam", "label": 3, "title": "Both", "to": "ketamine", "weight": 3}, {"color": "green", "from": "alprazolam", "label": 17, "title": "Both", "to": "heroin", "weight": 17}, {"color": "green", "from": "alprazolam", "label": 10, "title": "Both", "to": "methadone", "weight": 10}, {"color": "green", "from": "gabapentin", "label": 14, "title": "Both", "to": "tramadol", "weight": 14}, {"color": "green", "from": "gabapentin", "label": 12, "title": "Both", "to": "codeine", "weight": 12}, {"color": "green", "from": "gabapentin", "label": 17, "title": "Both", "to": "methadone", "weight": 17}, {"color": "green", "from": "gabapentin", "label": 8, "title": "Both", "to": "ketamine", "weight": 8}, {"color": "green", "from": "gabapentin", "label": 8, "title": "Both", "to": "heroin", "weight": 8}, {"color": "green", "from": "ketamine", "label": 8, "title": "Both", "to": "methadone", "weight": 8}, {"color": "green", "from": "ketamine", "label": 6, "title": "Both", "to": "tramadol", "weight": 6}, {"color": "green", "from": "ketamine", "label": 6, "title": "Both", "to": "codeine", "weight": 6}, {"color": "green", "from": "ketamine", "label": 4, "title": "Both", "to": "heroin", "weight": 4}, {"color": "green", "from": "tramadol", "label": 12, "title": "Both", "to": "methadone", "weight": 12}, {"color": "green", "from": "tramadol", "label": 9, "title": "Both", "to": "heroin", "weight": 9}, {"color": "green", "from": "tramadol", "label": 9, "title": "Both", "to": "codeine", "weight": 9}, {"color": "green", "from": "codeine", "label": 62, "title": "Both", "to": "heroin", "weight": 62}, {"color": "green", "from": "codeine", "label": 10, "title": "Both", "to": "methadone", "weight": 10}, {"color": "green", "from": "methadone", "label": 12, "title": "Both", "to": "heroin", "weight": 12}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": true
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+        // if this network requires displaying the configure window,
+        // put it in its div
+        options.configure["container"] = document.getElementById("config");
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
