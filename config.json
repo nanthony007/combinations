@@ -16,7 +16,7 @@
             "name": "Cohort"
         },
         {
-            "type": "int",
+            "type": "integer",
             "index": 19,
             "name": "Homeless"
         }
